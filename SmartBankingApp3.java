@@ -20,6 +20,7 @@ public class SmartBankingApp3 {
         final String TRANSFER_MONEY = "Transfer Money";
         final String CHECK_ACCOUNT_BALANCE = "Check Accout Balance";
         final String DELETE_ACCOUNT = "Drop Existing Account";
+        final String EXIT = "Exit";
 
         final String ERROR_MSG = String.format("\t%s%s%s\n", COLOR_RED_BOLD, "%s", RESET);
         final String SUCCESS_MSG = String.format("\t%s%s%s\n", COLOR_GREEN_BOLD, "%s", RESET);
@@ -52,7 +53,7 @@ public class SmartBankingApp3 {
                     System.out.println("\t[4]. Transfer Money: ");
                     System.out.println("\t[5]. Check Account Balance: ");
                     System.out.println("\t[6]. Drop Existing Account: ");
-                    System.out.println("\t[7]. Exit: \n");
+                    System.out.println("\t[7]. Exit: ");
                     System.out.print("\tEnter the Option Number to Continue: ");
                     int option = scanner.nextInt();
                     scanner.nextLine();
@@ -536,6 +537,9 @@ public class SmartBankingApp3 {
                                
                     }while(true);
                     break;
+
+                case EXIT:
+                System.exit(0);
             }
 
         } while (true);
