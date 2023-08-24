@@ -3,7 +3,7 @@ import java.util.Vector;
 
 import javax.sound.sampled.SourceDataLine;
 
-public class SmartBankingApp1B {
+public class SmartBankingApp3 {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -33,6 +33,7 @@ public class SmartBankingApp1B {
         double accountBalance;
         boolean flag;
         int index;
+        int count =0;
 
         do {
             final String APP_TITLE = String.format("%s%s%s", COLOR_BLUE_BOLD, screen, RESET);
@@ -40,7 +41,7 @@ public class SmartBankingApp1B {
             System.out.println(CLEAR);
             System.out.println("\t" + APP_TITLE + "\n");
 
-            switchlbl:
+            
             switch (screen) {
 // ==========================================================================================================================================
                 case DASHBOARD:
@@ -89,7 +90,7 @@ public class SmartBankingApp1B {
 // ==========================================================================================================================================
                     boolean valid = true;
                     do {
-                        accountNumber = String.format("SDB-%05d", (accountNumbers.size() + 1));
+                        accountNumber = String.format("SDB-%05d", (accountNumbers.size() + 1 + count));
                         System.out.printf("\t%s \n", accountNumber);
                         String accountName;
                         // Name Validation
@@ -488,7 +489,7 @@ public class SmartBankingApp1B {
 //===========================================================================================================================================
                 case DELETE_ACCOUNT:
 //===========================================================================================================================================
-     
+                    count =0;
                     do{
                         System.out.print("\tEnter Account Number: ");
                         accountNumber = scanner.nextLine().strip();
@@ -517,12 +518,16 @@ public class SmartBankingApp1B {
 
                                 }else {
                                     index = accountNumbers.indexOf(accountNumber);
-                                    System.out.printf("\tAccount Balance is Rs. %,.2f\n",accountBalances.get(index));
+                                    accountNumbers.remove(index);
+                                    accountNames.remove(index);
+                                    accountBalances.remove(index);
+                                    System.out.printf("\tAccount %s is deleted\n",accountNumber);
+                                    count++;
                                     break label4;
                                 }
 
                             };
-                            System.out.print("\tDo you want to check again or check another..? (Y/N) ");
+                            System.out.print("\tDo you want to delete again or delete another..? (Y/N) ");
                             if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
                             else {
                                 screen = DASHBOARD;
